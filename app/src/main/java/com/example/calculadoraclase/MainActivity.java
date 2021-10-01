@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView txtResultado;
     Button btnPulsado;
-    String numero, primerSumando, op,  segundoSumando;
+    String numero, primerSumando, op;
     int resultado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,61 +24,101 @@ public class MainActivity extends AppCompatActivity {
         txtResultado.setText("0");
     }
 
-    public void btnUno(View v){
-
+    public void btnNumeroPulsado(View v){
+        Button btn = (Button) v;
+        /*
         numero= numero + "1";
         this.txtResultado.setText(""+numero);
-    }
+        */
 
-    public void btnDos(View v){
-
-        numero= numero + "2";
-        this.txtResultado.setText(""+numero);
-    }
-    public void elegirNumero(View v){
-        switch (v.getId()){
-            case 1:
-                if (v.getId() == Integer.parseInt("id4")){
-                    numero=numero + "4";
-                    this.txtResultado.setText(""+numero);
-        }
+        switch(btn.getTag().toString()){
+            case "uno":
+                numero= numero + "1";
+                break;
+            case "dos":
+                numero=numero +"2";
+                break;
+            case "tres":
+                numero=numero +"3";
+                break;
+            case "cuatro":
+                numero=numero +"4";
+                break;
+            case "cinco":
+                numero=numero +"5";
+                break;
+            case "seis":
+                numero=numero +"6";
+                break;
+            case "siete":
+                numero=numero +"7";
+                break;
+            case "ocho":
+                numero=numero +"8";
+                break;
+            case "nueve":
+                numero=numero +"9";
+                break;
+            case "cero":
+                numero=numero +"0";
                 break;
             default:
-                throw new IllegalStateException("Unexpected value: " + v.getId());
+                this.txtResultado.setText("Error");
+                break;
         }
+        this.txtResultado.setText(numero);
     }
 
 
 
     public void btnSumar(View v){
         primerSumando=numero;
-        numero="";
-        txtResultado.setText(numero);
+        numero="0";
+        txtResultado.setText(""+numero);
         this.op="+";
     }
 
     public void btnRestar (View v){
         primerSumando=numero;
-        numero="";
+        numero="0";
         txtResultado.setText(numero);
         this.op="-";
     }
     public void btnMultiplicar (View v){
         primerSumando=numero;
-        numero="";
+        numero="0";
         txtResultado.setText(numero);
         this.op="X";
     }
     public void btnDividir (View v){
         primerSumando=numero;
-        numero="";
+        numero="0";
         txtResultado.setText(numero);
-        this.op="X";
+        this.op="/";
     }
 
     public void btnIgual(View v){
-        segundoSumando=numero;
-        resultado= Integer.parseInt(primerSumando   + segundoSumando);
-        txtResultado.setText(resultado);
+        switch (this.op){
+            case "+":
+
+                resultado= Integer.parseInt(primerSumando)  + Integer.parseInt( numero);
+                break;
+            case "-":
+
+                resultado= Integer.parseInt(primerSumando)  - Integer.parseInt( numero);
+                break;
+            case "X":
+
+                resultado= Integer.parseInt(primerSumando)  * Integer.parseInt( numero);
+                break;
+            case "/":
+
+                resultado= Integer.parseInt(primerSumando)  / Integer.parseInt( numero);
+                break;
+            default:
+                this.txtResultado.setText("DATOS ERRONEOS.");
+                break;
+        }
+        this.txtResultado.setText(""+resultado);
     }
 }
