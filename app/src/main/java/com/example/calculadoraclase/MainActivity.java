@@ -35,6 +35,18 @@ public class MainActivity extends AppCompatActivity {
         numero= numero + "2";
         this.txtResultado.setText(""+numero);
     }
+    public void elegirNumero(View v){
+        switch (v.getId()){
+            case 1:
+                if (v.getId() == Integer.parseInt("id4")){
+                    numero=numero + "4";
+                    this.txtResultado.setText(""+numero);
+        }
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + v.getId());
+        }
+    }
 
 
 
@@ -45,9 +57,28 @@ public class MainActivity extends AppCompatActivity {
         this.op="+";
     }
 
+    public void btnRestar (View v){
+        primerSumando=numero;
+        numero="";
+        txtResultado.setText(numero);
+        this.op="-";
+    }
+    public void btnMultiplicar (View v){
+        primerSumando=numero;
+        numero="";
+        txtResultado.setText(numero);
+        this.op="X";
+    }
+    public void btnDividir (View v){
+        primerSumando=numero;
+        numero="";
+        txtResultado.setText(numero);
+        this.op="X";
+    }
+
     public void btnIgual(View v){
         segundoSumando=numero;
-        resultado=Integer.parseInt( primerSumando)+Integer.parseInt(segundoSumando);
+        resultado= Integer.parseInt(primerSumando   + segundoSumando);
         txtResultado.setText(resultado);
     }
 }
